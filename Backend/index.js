@@ -24,6 +24,7 @@ app.use(express.json());
 app.get('/', (_, res) => {
     res.send('Hello!! Welcome To My Server...');
 });
+
 app.use('/api/users', userRoutes);
 
 // Start server

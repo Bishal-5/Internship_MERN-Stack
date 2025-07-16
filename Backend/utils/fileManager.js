@@ -64,20 +64,21 @@ class fileManager {
     }
 
     async appendData(fileName, newData) {
-        try {
-            const data = await this.readData(fileName);
-            const nextId =
-                data.length > 0 ? Math.max(...data.map(item => item.id)) + 1 : 1;
-            newItem = nextId;
-            newItem.createdAt = new Date().toISOString();
-            data.push(newItem);
-            await this.writeData(fileName, data);
-            return newItem;
-        }
-        catch (error) {
-            throw error;
-        }
+    try {
+        const data = await this.readData(fileName);
+        const nextId =
+            data.length > 0 ? Math.max(...data.map(item => item.id)) + 1 : 1;
+        newData.id = nextId;  // fixed this line
+        newData.createdAt = new Date().toISOString();
+        data.push(newData);
+        await this.writeData(fileName, data);
+        return newData;
     }
+    catch (error) {
+        throw error;
+    }
+}
+
 }
 
 module.exports = new fileManager();

@@ -25,5 +25,14 @@
     "role": "user",
     "createdAt": "2024-01-17T09:15:00Z",
     "isActive": false
+  },
+  {
+    "id": 1,
+    "name": "Billi Gate",
+    "email": "billi@example.com",
+    "age": 39,
+    "role": "person",
+    "isActive": true,
+    "createdAt": "2025-07-16T18:10:07.571Z"
   }
 ]
