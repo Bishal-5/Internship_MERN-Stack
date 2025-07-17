@@ -13,7 +13,9 @@ class fileManager {
             return JSON.parse(data);
         }
         catch (error) {
+            console.error(`Error reading file ${fileName}:`, error);
             if (error.code === "ENOENT") {
+                console.error(`File not found: ${fileName}`);
                 return [];
             }
             throw error;
@@ -75,6 +77,7 @@ class fileManager {
         return newData;
     }
     catch (error) {
+        console.error(`Error appending data to file ${fileName}:`, error);
         throw error;
     }
 }

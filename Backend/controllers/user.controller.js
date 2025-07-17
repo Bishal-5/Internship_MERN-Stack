@@ -18,7 +18,7 @@ const userController = {
       return res
         .status(200)
         .json(generateResponse(true, "All Users Found", users, 200));
-        
+
     } catch (error) {
       return res
         .status(500)

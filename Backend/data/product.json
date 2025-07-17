@@ -3,10 +3,19 @@
     "id": 1,
     "name": "Laptop",
     "description": "High-performance laptop",
-    "price": 999.99,
-    "category": "electronics",
+    "price": 99999,
+    "category": "Electronics",
     "stock": 50,
-    "isActive": true,
-    "createdAt": "2025-07-16T16:32:53.827Z"
+    "createdAt": "2025-07-17T15:45:12.900Z"
+  },
+  {
+    "id": 2,
+    "name": "Mobile",
+    "description": "High performance mobile",
+    "price": 1200,
+    "category": "Electronics",
+    "stock": 122,
+    "createdAt": "2025-07-17T15:51:45.715Z",
+    "updatedAt": "2025-07-17T16:06:13.060Z"
   }
 ]

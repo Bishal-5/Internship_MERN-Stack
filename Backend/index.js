@@ -1,14 +1,15 @@
 const express = require('express');
+// const middleware = require('./middleware/auth.middleware');
 const cookieParser = require('cookie-parser');
 const dotenv = require('dotenv');
 const cors = require('cors');
 const config = require('config');
-
-// Load environment variables
 dotenv.config();
 
 // Import routes
 const userRoutes = require('./routes/user.routes');
+const authRoutes = require('./routes/auth.routes');
+const productRoutes = require('./routes/product.routes');
 
 // Initialize app
 const app = express();
@@ -26,6 +27,8 @@ app.get('/', (_, res) => {
 });
 
 app.use('/api/users', userRoutes);
+app.use('/api/auth', authRoutes);
+app.use('/api/products', productRoutes);
 
 // Start server
 app.listen(PORT, HOST, () => {
