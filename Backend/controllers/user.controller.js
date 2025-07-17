@@ -5,19 +5,24 @@ const { generateResponse } = require('../utils/helper');
 const userController = {
 
   // Fetch all existing users
-  getAllUsers: async () => {
+  getAllUsers: async (_, res) => {
     try {
       const users = await fileManager.readData("user.json");
 
       if (!Array.isArray(users) || users.length === 0) {
         console.log(users?.length ?? "No users array");
-        return generateResponse(false, "No Users Found", null, 404);
+        return res
+          .status(404)
+          .json(generateResponse(false, "No Users Found", null, 404));
       }
 
-      return generateResponse(true, "All Users Found", users, 200);
+      return res
+        .status(200)
+        .json(generateResponse(true, "All Users Found", users, 200));
     } catch (error) {
-      console.error("Error in getAllUsers:", error);
-      return generateResponse(false, "Internal Server Error", null, 500);
+      return res
+      .status(500)
+      .json(generateResponse(false, "Internal Server Error", null, 500));
     }
   },
 
