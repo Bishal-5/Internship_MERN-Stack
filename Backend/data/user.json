@@ -24,7 +24,8 @@
     "age": 35,
     "role": "user",
     "createdAt": "2024-01-17T09:15:00Z",
-    "isActive": false
+    "isActive": false,
+    "updatedAt": "2025-07-17T07:24:42.056Z"
   },
   {
     "id": 4,
@@ -33,6 +34,6 @@
     "age": 36,
     "role": "person",
     "isActive": true,
-    "createdAt": "2025-07-17T02:39:10.208Z"
+    "createdAt": "2025-07-17T07:28:55.331Z"
   }
 ]

@@ -9,8 +9,7 @@ const userController = {
     try {
       const users = await fileManager.readData("user.json");
 
-      if (!Array.isArray(users) || users.length === 0) {
-        console.log(users?.length ?? "No users array");
+      if (users.length === 0) {
         return res
           .status(404)
           .json(generateResponse(false, "No Users Found", null, 404));
@@ -19,16 +18,16 @@ const userController = {
       return res
         .status(200)
         .json(generateResponse(true, "All Users Found", users, 200));
+        
     } catch (error) {
       return res
-      .status(500)
-      .json(generateResponse(false, "Internal Server Error", null, 500));
+        .status(500)
+        .json(generateResponse(false, "Internal Server Error", null, 500));
     }
   },
 
   // Fetch user by ID
   getUserById: async (req, res) => {
-    const { id } = req.params;
     try {
       const { id } = req.params;
       const users = await fileManager.readData("user.json");
@@ -45,7 +44,7 @@ const userController = {
 
     } catch (error) {
       // console.log("Error: "+ error)
-      res
+      return res
         .status(500)
         .json(generateResponse(false, "Internal Server Error", null, 500));
     }
@@ -71,15 +70,14 @@ const userController = {
 
       const newUser = await fileManager.appendData("user.json", userData);
 
-      res
+      return res
         .status(201)
         .json(
           generateResponse(true, "User created successfully", newUser, 201)
         );
-    } catch (error) {
-      console.log(error);
 
-      res
+    } catch (error) {
+      return res
         .status(500)
         .json(generateResponse(false, "Failed to create user", null, 500));
     }
@@ -87,51 +85,62 @@ const userController = {
 
   // Update user details by ID
   updateUsers: async (req, res) => {
-    const { id } = req.params;
     try {
-      const users = await fileManager.readData("user.json");
-      const userIndex = users.findIndex(user => user.id === parseInt(id));
+      const { id } = req.params;
+      const updateData = req.body;
 
-      if (userIndex === -1) {
-        return res
-          .status(404)
-          .json(generateResponse(false, "User Not Found", null, 404));
+      // Check if email already exists (if updating email)      
+      if (updateData.email) {
+        const users = await fileManager.readData("user.json");
+        const existingUser = users.find((u) => u.email === updateData.email && u.id === parseInt(id));
+
+        if (existingUser) {
+          return res
+            .status(400)
+            .json(generateResponse(false, "Email Already Exist!", null, 400));
+        }
       }
 
-      const updatedUser = { ...users[userIndex], ...req.body };
-      users[userIndex] = updatedUser;
+      const updatedUser = await fileManager.updateData(id, "user.json", updateData);
 
-      await fileManager.writeData("user.json", users);
+      if (!updatedUser) {
+        return res
+          .status(400)
+          .json(generateResponse(false, "User Not Found!", null, 400));
+      }
 
       return res
         .status(200)
-        .json(generateResponse(true, "User updated successfully", updatedUser, 200));
+        .json(
+          generateResponse(true, "User updated successfully", updatedUser, 200)
+        );
+
     } catch (error) {
       res
         .status(500)
-        .json(generateResponse(false, "Internal Server Error", null, 500));
+        .json(generateResponse(false, "Failed to update user", null, 500));
     }
   },
 
   // Delete user by ID
   deleteUsers: async (req, res) => {
-    const { id } = req.params;
     try {
+      const { id } = req.params;
       const users = await fileManager.readData("user.json");
-      const userIndex = users.findIndex(user => user.id === parseInt(id));
+      const findUser = users.find(user => user.id === parseInt(id));
 
-      if (userIndex === -1) {
+      if (!findUser) {
         return res
           .status(404)
           .json(generateResponse(false, "User Not Found", null, 404));
       }
 
-      users.splice(userIndex, 1);
-      await fileManager.writeData("user.json", users);
+      await fileManager.deleteData("user.json", id);
 
       return res
         .status(200)
         .json(generateResponse(true, "User deleted successfully", null, 200));
+
     } catch (error) {
       res
         .status(500)
