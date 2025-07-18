@@ -16,24 +16,5 @@
     "role": "user",
     "createdAt": "2024-01-16T14:20:00Z",
     "isActive": true
-  },
-  {
-    "id": 3,
-    "name": "Bob Johnson",
-    "email": "bob@example.com",
-    "age": 35,
-    "role": "user",
-    "createdAt": "2024-01-17T09:15:00Z",
-    "isActive": false,
-    "updatedAt": "2025-07-17T07:24:42.056Z"
-  },
-  {
-    "id": 4,
-    "name": "Bill Gates",
-    "email": "bill@example.com",
-    "age": 36,
-    "role": "person",
-    "isActive": true,
-    "createdAt": "2025-07-17T07:28:55.331Z"
   }
 ]

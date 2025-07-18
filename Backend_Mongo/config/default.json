@@ -1,0 +1,7 @@
+{
+    "db": "mongodb://localhost:27017/backend_mongo",
+    "port": 5000,
+    "jwtPrivateKey": "1234567890",
+    "JWT_EXPIRES_IN": "15m",
+    "requiresAuth": true
+}
