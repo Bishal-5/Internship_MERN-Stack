@@ -18,7 +18,7 @@ const person = {
     city: "New York"
 };
 
-for (const key in person){
+for (const key in person) {
     console.log(`${key}: ${person[key]}`);
 }
 
