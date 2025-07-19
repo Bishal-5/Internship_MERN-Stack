@@ -2,7 +2,7 @@ const { config } = require('dotenv');
 const winston = require('winston');
 require('winston-mongodb');
 
-module.exports = function() {
+module.exports = function () {
     winston.add(
         new winston.transports.Console({
             format: winston.format.combine(
@@ -27,7 +27,7 @@ module.exports = function() {
         })
     );
 
-    process.on("unhandledRejection", (ex)=>{
+    process.on("unhandledRejection", (ex) => {
         throw ex;
     })
 };

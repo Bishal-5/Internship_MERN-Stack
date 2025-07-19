@@ -71,10 +71,10 @@ const getCurrent = async (req, res) => {
         const user = await User.findById(userId).select('-password');
 
         return res.status(200)
-        .json({
-            "Current User": user
-        });
-        
+            .json({
+                "Current User": user
+            });
+
     } catch (error) {
         winston.error('Error fetching current user:', error);
         return res.status(500).send('Internal Server Error');
