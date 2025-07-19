@@ -66,7 +66,19 @@ const login = async (req, res) => {
 
 // Get Current User
 const getCurrent = async (req, res) => {
+    try {
+        const userId = req.userInfo._id;
+        const user = await User.findById(userId).select('-password');
 
+        return res.status(200)
+        .json({
+            "Current User": user
+        });
+        
+    } catch (error) {
+        winston.error('Error fetching current user:', error);
+        return res.status(500).send('Internal Server Error');
+    }
 };
 
 module.exports = {
