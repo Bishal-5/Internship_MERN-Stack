@@ -12,9 +12,10 @@ const BlogPost = ({ title, author, date, content, tags }) => {
         const wordCount = text.split(' ').length;
         return Math.ceil(wordCount / wordsPerMinute);
     };
-    
+
     return (
         <article className="blog-post">
+
             <header>
                 <h1>{title}</h1>
                 <div className="post-meta">
@@ -25,9 +26,11 @@ const BlogPost = ({ title, author, date, content, tags }) => {
                     </span>
                 </div>
             </header>
+
             <div className="post-content">
                 <p>{content}</p>
             </div>
+
             <footer>
                 <div className="tags">
                     {tags.map((tag, index) => (
@@ -37,6 +40,7 @@ const BlogPost = ({ title, author, date, content, tags }) => {
                     ))}
                 </div>
             </footer>
+
         </article>
     );
 };
@@ -52,6 +56,7 @@ const BlogList = () => {
             content: "React is a powerful library for building user interfaces...",
             tags: ["react", "javascript", "frontend"]
         },
+
         {
             id: 2,
             title: "Understanding JSX",
@@ -65,6 +70,7 @@ const BlogList = () => {
     return (
         <div className="blog-list">
             <h2>Latest Blog Posts</h2>
+
             {posts.map(post => (
                 <BlogPost
                     key={post.id}

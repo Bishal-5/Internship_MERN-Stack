@@ -4,7 +4,7 @@ const LifecycleExample = () => {
     const [count, setCount] = useState(0);
     const [name, setName] = useState("");
 
-    // Equivalent to componentDidMount
+    // Equivalent to component Did Mount
     useEffect(() => {
         console.log("Component mounted");
         document.title = "React App";
@@ -15,9 +15,10 @@ const LifecycleExample = () => {
         };
     }, []); // Empty dependency array means this runs once on mount
 
-    // Equivalent to componentDidUpdate for count changes
+    // Equivalent to component Did Update for count changes
     useEffect(() => {
         console.log("Count updated:", count);
+
         if (count > 0) {
             document.title = `Count: ${count}`;
         }
@@ -33,6 +34,8 @@ const LifecycleExample = () => {
             <h2>Lifecycle Example</h2>
             <p>Count: {count}</p>
             <button onClick={() => setCount(count + 1)}>Increment</button>
+
+            <br />
 
             <input
                 type="text"
