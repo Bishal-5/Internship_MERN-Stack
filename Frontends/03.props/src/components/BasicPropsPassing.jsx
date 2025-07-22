@@ -1,4 +1,6 @@
 import React from 'react'
+
+// Internal CSS
 const cardStyle = {
     backgroundColor: '#f0f4f8',
     padding: '1.5rem',
@@ -19,6 +21,7 @@ const textStyle = {
     color: '#4a5568',
     margin: '0.3rem 0'
 };
+
 // Child component receiving props
 const WelcomeMessage = (props) => {
     return (
@@ -33,7 +36,7 @@ const BasicPropsPassing = () => {
     return (
         <div>
             <WelcomeMessage name="Alice" age={25} />
-            <WelcomeMessage name="Bob" age={30} />
+            <WelcomeMessage name="Bob" age={16} />
             <WelcomeMessage name="Charlie" age={22} />
         </div>
     )
