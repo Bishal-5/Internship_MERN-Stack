@@ -23,11 +23,11 @@ const AdvancedIntro03 = () => {
     );
 
     // Anternative - using React.Fragment explicity (Old Version)
-    const explicityFragment =(
-    <React.Fragment>
-        <h1>Title</h1>
-        <p>Description</p>
-    </React.Fragment>
+    const explicityFragment = (
+        <React.Fragment>
+            <h1>Title</h1>
+            <p>Description</p>
+        </React.Fragment>
     );
 
     return (
